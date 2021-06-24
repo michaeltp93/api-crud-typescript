@@ -1,5 +1,6 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
 import { Record } from './Record';
+import { Author } from './Author';
 
 @Entity()
 export class Article extends Record {
@@ -8,4 +9,9 @@ export class Article extends Record {
 
 	@Column()
 	text: string;
+
+	@ManyToOne(type => Author, author => author.articles, {
+		onDelete: 'CASCADE',
+	})
+	author: Author;
 }

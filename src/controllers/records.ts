@@ -2,14 +2,14 @@ import { Request, Response } from 'express';
 import { Repository } from 'typeorm';
 
 export const recordsController = <T>(repository: Repository<T>) => {
-	const getAll = async (_: Request, res: Response) => {
-		const results = await repository.find();
+	const getAll = async (req: Request, res: Response) => {
+		const results = await repository.find(req.query);
 		return res.send(results);
 	};
 
 	const getOne = async (req: Request, res: Response) => {
 		const { id } = req.params;
-		const results = await repository.findOne(id);
+		const results = await repository.findOne(id, req.query);
 		return res.send(results);
 	};
 
