@@ -12,6 +12,5 @@ export const app = async (port: number) => {
 	app.use(articlesRoutes(router));
 
 	// start server
-
-	app.listen(port);
+	app.listen(port, () => console.log('Server running on PORT:', port));
 };
